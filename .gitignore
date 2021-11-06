@@ -1,0 +1,9 @@
+# Package management
+node_modules
+vendor
+
+# Temporary files
+var
+
+# Environment
+.env
