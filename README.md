@@ -49,6 +49,26 @@ Development of a template PHP project using the MVC (*Model-View-Controller*) ar
 
 ## Project Structure
 
+```
+.
+├── App
+│   ├── Controllers
+│   ├── Core
+│   ├── Models
+│   └── Views
+├── composer.json
+├── LICENSE
+├── public
+│   ├── assets
+│   ├── css
+│   ├── index.php
+│   └── js
+├── README.md
+└── vendor
+    ├── autoload.php
+    └── composer
+```
+
 ---
 
 ## Composer
