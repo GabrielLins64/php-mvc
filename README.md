@@ -1,11 +1,11 @@
 <h1>Introduction to PHP with MVC</h1>
 
 Development of a template PHP project using the MVC (*Model-View-Controller*) architecture. This project also shows the basic usage of SQL in MySQL.
+
 ---
 
 <h2>Index</h2>
 
-- [Development of a template PHP project using the MVC (*Model-View-Controller*) architecture. This project also shows the basic usage of SQL in MySQL.](#development-of-a-template-php-project-using-the-mvc-model-view-controller-architecture-this-project-also-shows-the-basic-usage-of-sql-in-mysql)
 - [Dependencies](#dependencies)
 - [Installation](#installation)
 - [Project Structure](#project-structure)
