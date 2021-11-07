@@ -1,0 +1,12 @@
+{
+  "autoload": {
+    "psr-4": {
+      "App\\": "App/"
+    }
+  },
+  "config": {
+    "platform": {
+      "php": "7.4.25"
+    }
+  }
+}

@@ -9,8 +9,17 @@ Development of a template PHP project using the MVC (*Model-View-Controller*) ar
 - [Dependencies](#dependencies)
 - [Installation](#installation)
 - [Project Structure](#project-structure)
-- [MySQL](#mysql)
+- [Composer](#composer)
   - [Installation](#installation-1)
+  - [Composer init](#composer-init)
+  - [Composer require](#composer-require)
+  - [Composer update](#composer-update)
+  - [Removing a package](#removing-a-package)
+  - [Composer install](#composer-install)
+  - [Composer dump-autoload](#composer-dump-autoload)
+  - [Packagist](#packagist)
+- [MySQL](#mysql)
+  - [Installation](#installation-2)
   - [Creating a new user](#creating-a-new-user)
   - [Basic usage (queries)](#basic-usage-queries)
     - [List all databases](#list-all-databases)
@@ -39,6 +48,157 @@ Development of a template PHP project using the MVC (*Model-View-Controller*) ar
 ---
 
 ## Project Structure
+
+```
+.
+├── App
+│   ├── Controllers
+│   ├── Core
+│   ├── Models
+│   └── Views
+├── composer.json
+├── LICENSE
+├── public
+│   ├── assets
+│   ├── css
+│   ├── index.php
+│   └── js
+├── README.md
+└── vendor
+    ├── autoload.php
+    └── composer
+```
+
+---
+
+## Composer
+
+### Installation
+
+<small>*From the Composer Docs:</small>
+
+Composer is a tool for dependency management in PHP. It allows you to declare the libraries your project depends on and it will manage (install/update) them for you.
+
+Composer is not a package manager in the same sense as Yum or Apt are. Yes, it deals with "packages" or libraries, but it manages them on a per-project basis, installing them in a directory (e.g. vendor) inside your project. By default, it does not install anything globally. Thus, it is a dependency manager. It does however support a "global" project for convenience via the global command.
+
+To install globally, navigate into `bin` directory, give execution permission to the composer installation scripts, then execute it.
+
+```shell
+$ cd bin
+$ chmod +x composer_install.sh
+$ ./composer_install.sh
+```
+
+Finally, for enabling the call for `composer` command from anywhere, move the `composer.phar` to a system/user bin directory:
+
+```shell
+$ mv composer.phar ~/.local/bin/composer
+```
+
+### Composer init
+
+The `composer init` command creates the *composer.json*. This file describes the dependencies of your project and may contain other metadata as well. It typically should go in the top-most directory of your project/VCS repository. You can technically run Composer anywhere but if you want to publish a package to [Packagist](#packagist), it will have to be able to find the file at the top of your VCS repository. Usage:
+
+```shell
+$ composer init
+```
+
+### Composer require
+
+In order to install a package, *monolog* as an example, type:
+
+```shell
+$ composer require monolog/monolog
+```
+
+### Composer update
+
+To initially install the defined dependencies for your project, you should run the `update` command.
+
+This will make Composer do two things:
+
+- It resolves all dependencies listed in your `composer.json` file and writes all of the packages and their exact versions to the composer.lock file, locking the project to those specific versions. You should commit the `composer.lock` file to your project repo so that all people working on the project are locked to the same versions of dependencies (more below). This is the main role of the `update` command.
+
+- It then implicitly runs the `install` command. This will download the dependencies' files into the `vendor` directory in your project. (The `vendor` directory is the conventional location for all third-party code in a project). In our example from above, you would end up with the Monolog source files in `vendor/monolog/monolog/`. As Monolog has a dependency on `psr/log`, that package's files can also be found inside `vendor/`.
+
+If you only want to install, upgrade or remove one dependency, you can explicitly list it as an argument:
+
+```shell
+$ composer update monolog/monolog
+```
+
+### Removing a package
+
+Remove the line containing the `<vendor>/<package-name>` from the `composer.json`, then type:
+
+```shell
+$ composer update
+```
+
+### Composer install
+
+If there is already a composer.lock file in the project folder, it means either you ran the update command before, or someone else on the project ran the update command and committed the composer.lock file to the project (which is good).
+
+Either way, running install when a composer.lock file is present resolves and installs all dependencies that you listed in composer.json, but Composer uses the exact versions listed in composer.lock to ensure that the package versions are consistent for everyone working on your project. As a result you will have all dependencies requested by your composer.json file, but they may not all be at the very latest available versions (some of the dependencies listed in the composer.lock file may have released newer versions since the file was created). This is by design, it ensures that your project does not break because of unexpected changes in dependencies.
+
+So after fetching new changes from your VCS repository it is recommended to run a Composer install to make sure the vendor directory is up in sync with your composer.lock file.
+
+```shell
+$ composer install
+```
+
+### Composer dump-autoload
+
+Autoloading is the process of automatically loading PHP classes without explicitly loading them with the `require()`, `require_once()`, `include()`, or `include_once()` functions.
+
+For libraries that specify autoload information, Composer generates a vendor/autoload.php file. You can include this file and start using the classes that those libraries provide without any extra work:
+
+```php
+require __DIR__ . '/vendor/autoload.php';
+
+// Use the libraries here without requiring'em.
+```
+
+Composer autoloads your project's classes the same way it autoloads external libraries. For that, there is a property called autoload that can be added in composer.json:
+
+```json
+{
+  "autoload": {
+    "psr-4": {
+      "MyNamespace\\": "src/"
+    }
+  }
+}
+```
+
+Composer will register a PSR-4 autoloader for the `MyNamespace` namespace.
+
+You define a mapping from namespaces to directories. The `src` directory would be in your project root, on the same level as `vendor` directory is. An example filename would be `src/Foo.php` containing a `MyNamespace\Foo` class.
+
+Composer maintains its own cache regarding the autoload files, so we need to use the following command every time we make a change to the autoload, as it will update the cache:
+
+```shell
+$ composer dump-autoload
+```
+
+This command will re-generate the `vendor/autoload.php` file. See the [dump-autoload](https://getcomposer.org/doc/03-cli.md#dump-autoload-dumpautoload-) docs for more information.
+
+Including that file will also return the autoloader instance, so you can store the return value of the include call in a variable and add more namespaces. This can be useful for autoloading classes in a test suite, for example:
+
+```php
+$loader = require __DIR__ . '/vendor/autoload.php';
+$loader->addPsr4('Acme\\Test\\', __DIR__);
+```
+
+In addition to PSR-4 autoloading, Composer also supports PSR-0, classmap and files autoloading. See the [autoload docs](https://getcomposer.org/doc/04-schema.md#autoload) for more information.
+
+### Packagist
+
+Packagist.org is the main Composer repository. A Composer repository is basically a package source: a place where you can get packages from. Packagist aims to be the central repository that everybody uses. This means that you can automatically require any package that is available there, without further specifying where Composer should look for the package.
+
+If you go to the Packagist.org website, you can browse and search for packages.
+
+Any open source project using Composer is recommended to publish their packages on Packagist. A library does not need to be on Packagist to be used by Composer, but it enables discovery and adoption by other developers more quickly.
 
 ---
 
