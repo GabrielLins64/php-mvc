@@ -44,8 +44,9 @@ class App
       endif;
     endif;
 
-    // if $url isn't set, means that a method has been specified, and $url
-    // has been unset on the conditions above.
+    // if $url isn't set, means that a only url[0], url[1] and url[2]
+    // was set (and has been unsetted above). Otherwise, there would
+    // be an url[3], that is the parameters.
     $this->params = $url ? array_values($url) : [];
     // Calls the controller's method.
     call_user_func_array([$this->controller, $this->method], $this->params);
