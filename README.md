@@ -364,7 +364,7 @@ FLUSH PRIVILEGES;
 Set permissions for the new user to a database:
 
 ```sql
-GRANT ALL PRIVILEGES ON `databasename` . * TO 'yourusername'@'localhost';
+GRANT ALL PRIVILEGES ON databasename.* TO 'yourusername'@'localhost';
 ```
 
 Finally, you can login as the new user using:
