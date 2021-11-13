@@ -15,6 +15,7 @@ Development of a template PHP project using the MVC (*Model-View-Controller*) ar
     - [Create the virtual host files](#create-the-virtual-host-files)
     - [Activate the new Virtual Host files](#activate-the-new-virtual-host-files)
     - [Configure the Host file from local server](#configure-the-host-file-from-local-server)
+    - [htaccess](#htaccess)
 - [Composer](#composer)
   - [Installation](#installation-1)
   - [Composer init](#composer-init)
@@ -160,6 +161,24 @@ It is necessary to “warn” the local server that the files related to these d
 ```
 
 And, finally, you should be able to navigate into www.phpmvc.com in your browser.
+
+#### htaccess
+
+In order to apache 2 redirect the inner routes correctly to `public/index.php`, you'll have to create a `.htaccess` file on the `public/` directory. Its content must be:
+
+```apache
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php
+```
+
+Then, enable the rewrite apache module:
+
+```shell
+$ sudo a2enmod rewrite
+$ sudo systemctl restart apache2
+```
 
 ---
 
