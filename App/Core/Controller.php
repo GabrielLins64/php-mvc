@@ -12,6 +12,11 @@ class Controller
     require_once '../App/Models/' . $model . '.php';
     return new $model;
   }
+
+  public function view($view, $data = [])
+  {
+    require_once '../App/Views/template.php';
+  }
 }
 
 ?>

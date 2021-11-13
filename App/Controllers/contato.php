@@ -4,16 +4,18 @@ class Contato
 {
   public function index()
   {
-    echo "Index do contato";
+    echo "<h1>Contato</h1>";
   }
   
   public function email($nome = '', $email = '')
   {
+    $this->index();
     echo "nome: $nome<br>email: $email<br>";
   }
-
+  
   public function telefone()
   {
+    $this->index();
     echo "12345679";
   }
 }
