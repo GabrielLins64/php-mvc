@@ -9,6 +9,12 @@ Development of a template PHP project using the MVC (*Model-View-Controller*) ar
 - [Dependencies](#dependencies)
 - [Installation](#installation)
 - [Project Structure](#project-structure)
+- [Apache 2 Virtual Hosts](#apache-2-virtual-hosts)
+    - [Move the project to /var/www/](#move-the-project-to-varwww)
+    - [Permissions in /var/www/](#permissions-in-varwww)
+    - [Create the virtual host files](#create-the-virtual-host-files)
+    - [Activate the new Virtual Host files](#activate-the-new-virtual-host-files)
+    - [Configure the Host file from local server](#configure-the-host-file-from-local-server)
 - [Composer](#composer)
   - [Installation](#installation-1)
   - [Composer init](#composer-init)
@@ -68,6 +74,92 @@ Development of a template PHP project using the MVC (*Model-View-Controller*) ar
     ├── autoload.php
     └── composer
 ```
+
+---
+
+## Apache 2 Virtual Hosts
+
+How to access yourlocaldomainname.com using apache:
+
+#### Move the project to /var/www/
+
+Create / move your project folder, for example `phpmvc.com/`, into `/var/www/`:
+
+```shell
+$ sudo mkdir /var/www/phpmvc.com/public
+```
+
+And insert your `index.php` file into it.
+
+#### Permissions in /var/www/
+
+Add the apache user to the group of the logged in user:
+
+```shell
+$ sudo usermod -a -G www-data $USER
+```
+
+Change the group-level owner of the /var/www folder and its contents to the Apache group:
+
+```shell
+$ sudo chown -R $USER:www-data /var/www
+```
+
+Now we need to modify the permissions to ensure that the user has unrestricted access (write and read) to the files and that at the group level can read and execute the files. This way you ensure that other users can see your files (access the site) and your user has write access:
+
+```shell
+$ sudo chmod -R 775 /var/www
+```
+
+#### Create the virtual host files
+
+The files that define the Virtual Host are responsible for defining the configuration of each domain. Apache comes with a default file and we are going to copy it to use it as a starting point. Go to `/etc/apache2/sites-available/` and duplicate the vhost file, adapting it for your project:
+
+```shell
+$ cd /etc/apache2/sites-available/
+$ sudo cp 000-default.conf phpmvc.com.conf
+```
+
+Now edit the new file, by leaving this content in it:
+
+```apache
+<VirtualHost *:80>
+	ServerName phpmvc.com
+	ServerAlias www.phpmvc.com
+	ServerAdmin admin@phpmvc.com
+	DocumentRoot /var/www/phpmvc.com/public
+
+	<Directory "/var/www/phpmvc.com/">
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride All
+		Require all granted
+	</Directory>
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+#### Activate the new Virtual Host files
+
+Activate it on Apache and reload the server by doing:
+
+```shell
+$ sudo a2ensite phpmvc.com.conf
+$ sudo systemctl reload apache2
+```
+
+#### Configure the Host file from local server
+
+It is necessary to “warn” the local server that the files related to these domains are configured locally, so that they are not searched on the internet. For that, edit the `/etc/hosts` file, and duplicate the second line, but typing our site domain name, leaving the file like this:
+
+```
+127.0.0.1       localhost
+127.0.1.1       data-hunter-gl
+127.0.1.1       phpmvc.com
+```
+
+And, finally, you should be able to navigate into www.phpmvc.com in your browser.
 
 ---
 
