@@ -364,7 +364,7 @@ FLUSH PRIVILEGES;
 Set permissions for the new user to a database:
 
 ```sql
-GRANT ALL PRIVILEGES ON `databasename` . * TO 'yourusername'@'localhost';
+GRANT ALL PRIVILEGES ON databasename.* TO 'yourusername'@'localhost';
 ```
 
 Finally, you can login as the new user using:
@@ -499,6 +499,26 @@ DROP DATABASE dbname;
 ```
 
 ### Scripting
+
+In order to execute a ".sql" script, login to mysql cli:
+
+```shell
+$ sudo mysql -u <username>
+```
+
+Then, execute the script with the 'source' keyword:
+
+```sql
+mysql> source yourScript.sql
+```
+
+**Example:**
+
+Supose that you're in the root directory of this project, and need to execute the `bin/createDB.sql`. Simply type:
+
+```sql
+mysql> source bin/createDB.sql
+```
 
 ---
 

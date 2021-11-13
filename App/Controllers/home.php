@@ -4,12 +4,12 @@ use \App\Core\Controller;
 
 class Home extends Controller
 {
-  public function index($nome = '')
+  public function index()
   {
-    $user = $this->model('User');
-    $user->nome = $nome;
+    $note = $this->model('Note');
+    $dados = $note->getAll();
 
-    $this->view('home/index', ['nome' => $user->nome]);
+    $this->view('home/index', $dados);
   }
 }
 
