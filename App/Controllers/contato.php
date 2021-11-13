@@ -7,9 +7,9 @@ class Contato
     echo "Index do contato";
   }
   
-  public function email()
+  public function email($nome = '', $email = '')
   {
-    echo "meuemail@email";
+    echo "nome: $nome<br>email: $email<br>";
   }
 
   public function telefone()
