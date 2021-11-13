@@ -1,10 +1,17 @@
 <?php
 
-class Home
+use \App\Core\Controller;
+
+class Home extends Controller
 {
-  public function index()
+  public function index($nome = '', $email = '')
   {
-    echo "Estou no index.";
+    $user = $this->model('User');
+    $user->nome = $nome;
+    $user->email = $email;
+
+    echo "<h1>Index.</h1>";
+    echo "$user->nome<br>$user->email<br>";
   }
 }
 
