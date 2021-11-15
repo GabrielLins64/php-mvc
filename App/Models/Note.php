@@ -17,6 +17,21 @@ class Note extends Model
       return [];
     endif;
   }
+
+  public function find($id)
+  {
+    $sql = "SELECT * FROM anotacoes WHERE id = ?;";
+    $stmt = Model::getConn()->prepare($sql);
+    $stmt->bindValue(1, $id);
+    $stmt->execute();
+
+    if ($stmt->rowCount() > 0):
+      $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+      return $result;
+    else:
+      return [];
+    endif;
+  }
 }
 
 ?>
