@@ -7,6 +7,8 @@
 
     <?php if (!isset($_SESSION['logado'])): ?>
       <a href="/home/login">Login</a>
+      <span> | </span>
+      <a href="/accounts/cadastrar">Cadastro</a>
 
     <?php else: ?>
       <a href="/notes/criar">Criar bloco</a>
