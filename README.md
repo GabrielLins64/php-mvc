@@ -16,6 +16,7 @@ Development of a template PHP project using the MVC (*Model-View-Controller*) ar
     - [Activate the new Virtual Host files](#activate-the-new-virtual-host-files)
     - [Configure the Host file from local server](#configure-the-host-file-from-local-server)
     - [htaccess](#htaccess)
+- [Serving with php built-in web server](#serving-with-php-built-in-web-server)
 - [Composer](#composer)
   - [Installation](#installation-1)
   - [Composer init](#composer-init)
@@ -178,6 +179,22 @@ Then, enable the rewrite apache module:
 ```shell
 $ sudo a2enmod rewrite
 $ sudo systemctl restart apache2
+```
+
+---
+
+## Serving with php built-in web server
+
+To serve the project with [PHP Built-in Web Server](https://www.php.net/manual/en/features.commandline.webserver.php), just navigate into this project root directory, and type:
+
+```shell
+$ php -S <host>:<port> -t <external-files-dir>
+```
+
+For instance:
+
+```shell
+$ php -S localhost:8080 -t public/
 ```
 
 ---
