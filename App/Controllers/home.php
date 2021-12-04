@@ -9,7 +9,7 @@ class Home extends Controller
     $note = $this->model('Note');
     $dados = $note->getAll();
 
-    $this->view('home/index', $dados);
+    $this->view('home/index', $dados = ['registros' => $dados]);
   }
 }
 

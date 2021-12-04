@@ -4,6 +4,9 @@ use \App\Core\Model;
 
 class Note extends Model
 {
+  public $title;
+  public $text;
+  
   public function getAll()
   {
     $sql = "SELECT * FROM anotacoes;";
@@ -30,6 +33,33 @@ class Note extends Model
       return $result;
     else:
       return [];
+    endif;
+  }
+
+  public function save()
+  {
+    $sql = "INSERT INTO anotacoes (titulo, texto) VALUES (?, ?);";
+    $stmt = Model::getConn()->prepare($sql);
+    $stmt->bindValue(1, $this->title);
+    $stmt->bindValue(2, $this->text);
+
+    if ($stmt->execute()):
+      return "Cadastrado com sucesso!";
+    else:
+      return "Erro ao cadastrar";
+    endif;
+  }
+
+  public function delete($id)
+  {
+    $sql = "DELETE FROM anotacoes WHERE id = ?";
+    $stmt = Model::getConn()->prepare($sql);
+    $stmt->bindValue(1, $id);
+
+    if ($stmt->execute()):
+      return "Excluído com sucesso!";
+    else:
+      return "Erro ao excluir";
     endif;
   }
 }
