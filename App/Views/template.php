@@ -9,7 +9,11 @@
 </head>
 <body>
   <?php require_once 'global/header.php' ?>
-  <?php require_once '../App/Views/' . $view . '.php' ?>
+
+  <div class="main-content">
+    <?php require_once '../App/Views/' . $view . '.php' ?>
+  </div>
+
   <?php require_once 'global/footer.php' ?>
 </body>
 </html>

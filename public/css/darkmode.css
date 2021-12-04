@@ -1,0 +1,20 @@
+.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+.dark-mode a:link {
+  color: rgb(0, 255, 242);
+}
+
+.dark-mode a:visited {
+  color: rgb(202, 0, 202);
+}
+
+.dark-mode a:hover {
+  color: greenyellow;
+}
+
+.dark-mode a:active {
+  color: blue;
+}
