@@ -1,11 +1,12 @@
 <?php
 
-class NotFound
+use App\Core\Controller;
+
+class NotFound extends Controller
 {
   public function index()
   {
-    echo "<h1>404 - Ops...</h1>";
-    echo "<h3>Página não encontrada!</h3>";
+    $this->view('global/notfound');
   }
 }
 
