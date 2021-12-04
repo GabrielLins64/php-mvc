@@ -1,3 +1,5 @@
+<h1>Home</h1>
+
 <?php foreach ($data as $note): ?>
   <h2>
     <a href="/notes/ver/<?php echo $note['id']; ?>">
