@@ -28,7 +28,7 @@ class Auth
       return "Email inválido!";
     endif;
   }
-  
+
   public static function Logout()
   {
     session_destroy();
@@ -39,6 +39,7 @@ class Auth
   {
     if (!isset($_SESSION['logado'])):
       header('Location: /home/login');
+      die;
     endif;
   }
 }
