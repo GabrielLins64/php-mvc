@@ -49,6 +49,19 @@ class Note extends Model
       return "Erro ao cadastrar";
     endif;
   }
+
+  public function delete($id)
+  {
+    $sql = "DELETE FROM anotacoes WHERE id = ?";
+    $stmt = Model::getConn()->prepare($sql);
+    $stmt->bindValue(1, $id);
+
+    if ($stmt->execute()):
+      return "Excluído com sucesso!";
+    else:
+      return "Erro ao excluir";
+    endif;
+  }
 }
 
 ?>

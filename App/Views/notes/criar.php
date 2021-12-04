@@ -8,6 +8,8 @@
   endif;
 ?>
 
+<hr>
+
 <form action="/notes/criar" method="POST">
   Título: <input type="text" name="titulo" id=""><br>
   Texto: <textarea name="texto"></textarea><br>
