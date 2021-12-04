@@ -1,10 +1,9 @@
-<h1>Index Home</h1>
 <?php foreach ($data as $note): ?>
-  <h3>
+  <h2>
     <a href="/notes/ver/<?php echo $note['id']; ?>">
       <?php echo $note['titulo']; ?>
     </a>
-  </h3>
+  </h2>
 
   <p>
     <?php echo $note['texto']; ?>
