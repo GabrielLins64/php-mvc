@@ -1,0 +1,32 @@
+body {
+  background-color: white;
+  color: black;
+}
+
+a:hover {
+  color: green;
+}
+
+.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+.dark-mode a:link {
+  color: rgb(0, 255, 242);
+}
+
+/* visited link */
+.dark-mode a:visited {
+  color: rgb(202, 0, 202);
+}
+
+/* mouse over link */
+.dark-mode a:hover {
+  color: greenyellow;
+}
+
+.dark-mode /* selected link */
+a:active {
+  color: blue;
+}
