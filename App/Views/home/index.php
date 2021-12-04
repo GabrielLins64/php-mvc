@@ -18,7 +18,12 @@
   </h2>
 
   <p> <?php echo $note['texto']; ?> </p>
-  <a href="/notes/editar/<?php echo $note['id']; ?>">Editar</a>
-  <a href="/notes/excluir/<?php echo $note['id']; ?>">Excluir</a>
-  <br>
+
+  <?php if(isset($_SESSION['logado'])): ?>
+    <a href="/notes/editar/<?php echo $note['id']; ?>">Editar</a>
+    <a href="/notes/excluir/<?php echo $note['id']; ?>">Excluir</a>
+    <br>
+  <?php endif; ?>
+
+
 <?php endforeach; ?>

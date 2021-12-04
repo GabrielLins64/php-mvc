@@ -1,0 +1,19 @@
+.main-header {
+  background-color: darkblue;
+  border: 1px solid blue;
+  padding: 10px 20px 10px 20px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.main-header a:visited, .main-header a:link, .main-header span {
+  color: white;
+}
+
+.main-header a:hover {
+  color: yellow;
+}
+
+.main-header a:active {
+  color: lightblue;
+}

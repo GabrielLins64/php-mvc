@@ -11,7 +11,7 @@
 <hr>
 
 <form action="/notes/criar" method="POST">
-  Título: <input type="text" name="titulo" id=""><br>
-  Texto: <textarea name="texto"></textarea><br>
+  <input placeholder="Título" type="text" name="titulo"><br>
+  <textarea placeholder="Texto" name="texto"></textarea><br>
   <button type="submit" name="cadastrar">Cadastrar</button>
 </form>

@@ -1,7 +1,8 @@
 <?php
 
+use App\Auth;
 use \App\Core\Controller;
-use App\Core\Model;
+
 
 class Notes extends Controller
 {
@@ -15,6 +16,8 @@ class Notes extends Controller
 
   public function criar()
   {
+    Auth::CheckLogin();
+    
     $mensagem = array();
     
     if (isset($_POST['cadastrar'])):
@@ -33,9 +36,11 @@ class Notes extends Controller
 
   public function editar($id)
   {
+    Auth::CheckLogin();
+
     $mensagem = array();
     $note = $this->model('Note');
-    
+
     if (isset($_POST['atualizar'])):
       if (empty($_POST['titulo']) || empty($_POST['texto'])):
         $mensagem[] = "Todos os campos devem ser preenchidos.";
@@ -52,6 +57,8 @@ class Notes extends Controller
 
   public function excluir($id)
   {
+    Auth::CheckLogin();
+
     $mensagem = array();
     $note = $this->model('Note');
 
