@@ -18,11 +18,14 @@ class Notes extends Controller
     $mensagem = array();
     
     if (isset($_POST['cadastrar'])):
-      $note = $this->model('Note');
-      $note->title = $_POST['titulo'];
-      $note->text = $_POST['texto'];
-
-      $mensagem[] = $note->save();
+      if (empty($_POST['titulo']) || empty($_POST['texto'])):
+        $mensagem[] = "Todos os campos devem ser preenchidos.";
+      else:
+        $note = $this->model('Note');
+        $note->title = $_POST['titulo'];
+        $note->text = $_POST['texto'];
+        $mensagem[] = $note->save();
+      endif;
     endif;
     
     $this->view('notes/criar', $dados = ['mensagem' => $mensagem]);
