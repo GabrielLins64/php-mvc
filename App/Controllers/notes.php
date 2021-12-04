@@ -31,6 +31,25 @@ class Notes extends Controller
     $this->view('notes/criar', $dados = ['mensagem' => $mensagem]);
   }
 
+  public function editar($id)
+  {
+    $mensagem = array();
+    $note = $this->model('Note');
+    
+    if (isset($_POST['atualizar'])):
+      if (empty($_POST['titulo']) || empty($_POST['texto'])):
+        $mensagem[] = "Todos os campos devem ser preenchidos.";
+      else:
+        $note->title = $_POST['titulo'];
+        $note->text = $_POST['texto'];
+        $mensagem[] = $note->update($id);
+      endif;
+    endif;
+
+    $dados = $note->find($id);
+    $this->view('notes/editar', $dados = ['mensagem' => $mensagem, 'registro' => $dados]);    
+  }
+
   public function excluir($id)
   {
     $mensagem = array();
