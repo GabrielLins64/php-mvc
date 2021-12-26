@@ -3,13 +3,13 @@ function toggleDarkLightModes(switchBtn, switchLnk) {
   element.classList.toggle("dark-mode");
   switchBtn.classList.toggle("dark-mode");
   
-  if (switchBtn.innerHTML === "☽ Dark Mode") {
-    switchBtn.innerHTML = "☀ Light Mode";
-    switchLnk.innerHTML = "☀ Light Mode";
+  if (switchBtn.innerHTML === "🌛︎ Dark Mode") {
+    switchBtn.innerHTML = "🌞︎ Light Mode";
+    switchLnk.innerHTML = "🌞︎ Light Mode";
     localStorage.setItem('darkMode', 'enabled');
   } else {
-    switchBtn.innerHTML = "☽ Dark Mode";
-    switchLnk.innerHTML = "☽ Dark Mode";
+    switchBtn.innerHTML = "🌛︎ Dark Mode";
+    switchLnk.innerHTML = "🌛︎ Dark Mode";
     localStorage.setItem('darkMode', 'disabled');
   }
 }

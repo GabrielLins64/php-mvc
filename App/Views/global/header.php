@@ -18,12 +18,12 @@
 
     <?php endif; ?>
 
-    <a id="dark_light_lnk">☽ Dark Mode</a>
+    <a id="dark_light_lnk">🌛︎ Dark Mode</a>
 
   </div>
 
   <div style="width: 30%; float: right; text-align: right;">
-    <button id="dark_light_btn" class="dark-mode">☽ Dark Mode</button>
+    <button id="dark_light_btn" class="dark-mode">🌛︎ Dark Mode</button>
 
     <a id="hamburguer-icon" href="javascript:void(0);" class="icon" onclick="toggleNav()"></a>
   </div>
