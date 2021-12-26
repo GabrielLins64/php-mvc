@@ -1,3 +1,4 @@
+<input type="button" onclick="location.href='/'" value="Voltar">
 <h1>Fazer login</h1>
 
 <?php

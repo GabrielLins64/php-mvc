@@ -1,3 +1,4 @@
+<input type="button" onclick="location.href='/'" value="Voltar">
 <h1>Editar bloco de anotação</h1>
 
 <?php

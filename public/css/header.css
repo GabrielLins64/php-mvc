@@ -17,3 +17,11 @@
 .main-header a:active {
   color: lightblue;
 }
+
+button, input[type="button"]:hover {
+  cursor: pointer;
+}
+
+#dark_light_btn {
+  border-radius: 5px;
+}

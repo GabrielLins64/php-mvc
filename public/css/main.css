@@ -1,5 +1,5 @@
-@import "darkmode.css";
 @import "header.css";
+@import "darkmode.css";
 
 body {
   background-color: white;
