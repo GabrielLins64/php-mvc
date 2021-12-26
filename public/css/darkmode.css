@@ -25,9 +25,18 @@
 }
 
 .dark-mode #dark_light_btn {
-  background-color: aquamarine;
-  border: 2px solid aqua;
+  border: 1px solid blue;
   color: blue;
+}
+
+.dark-mode #dark_light_btn:hover {
+  border: 1px solid yellow;
+  background-color: rgb(74, 213, 255);
+  color: yellow;
+}
+
+#dark_light_btn:hover {
+  border: 2px solid rgb(0, 255, 0);
 }
 
 .dark-mode input[type="button"] {
@@ -46,4 +55,12 @@
   color: greenyellow;
   border: 0;
   border-top: 1px solid greenyellow;
+}
+
+.dark-mode #dark_light_lnk {
+  color: greenyellow;
+}
+
+.dark-mode #hamburguer-icon {
+  background-image: url("/assets/png/dark-hamburguer.png");
 }

@@ -2,11 +2,10 @@
   background-color: darkblue;
   border: 1px solid blue;
   padding: 10px 20px 10px 20px;
-  height: 30px;
-  line-height: 30px;
+  color: white
 }
 
-.main-header a:visited, .main-header a:link, .main-header span {
+.main-header a:visited, .main-header a:link {
   color: white;
 }
 
@@ -24,4 +23,51 @@ button, input[type="button"]:hover {
 
 #dark_light_btn {
   border-radius: 5px;
+}
+
+/* Small devices */
+
+.main-header .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px){
+  .main-header a, .main-header span, .main-header button {
+    display: none;
+  }
+
+  .main-header a.icon {
+    float: right;
+    display: block;
+  }
+
+  .main-header.responsive {
+    position: relative;
+  }
+
+  .main-header.responsive a, .main-header.responsive #dark_light_lnk {
+    float: none;
+    display: block;
+    text-align: left;
+    text-decoration: none;
+    padding: 10px 0;
+  }
+
+  .main-header.responsive a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+#hamburguer-icon {
+  background-image: url("/assets/png/light-hamburguer.png");
+  background-repeat: no-repeat;
+  background-size: 50px 50px;
+  height: 50px;
+  width: 50px;
+}
+
+#dark_light_lnk {
+  display: none;
+  color: white;
 }

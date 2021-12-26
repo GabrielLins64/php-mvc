@@ -6,6 +6,7 @@ body {
   color: black;
   padding: 0;
   margin: 0;
+  font-size: 1.3rem;
 }
 
 .main-content {
@@ -14,4 +15,8 @@ body {
 
 a:hover {
   color: green;
+}
+
+button, input[type="button"] {
+  font-size: 1.1rem;
 }
