@@ -6,7 +6,7 @@ class Note extends Model
 {
   public $title;
   public $text;
-  
+
   public function getAll()
   {
     $sql = "SELECT * FROM anotacoes;";

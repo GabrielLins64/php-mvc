@@ -20,7 +20,7 @@ class Auth
         $_SESSION['logado'] = true;
         $_SESSION['userId'] = $res['id'];
         $_SESSION['userName'] = $res['nome'];
-        header('Location: /home/index');
+        header('Location: /');
       else:
         return "Senha inválida!";
       endif;
@@ -32,13 +32,13 @@ class Auth
   public static function Logout()
   {
     session_destroy();
-    header('Location: /home/index');
+    header('Location: /');
   }
 
   public static function CheckLogin()
   {
     if (!isset($_SESSION['logado'])):
-      header('Location: /home/login');
+      header('Location: /');
       die;
     endif;
   }

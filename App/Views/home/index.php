@@ -1,6 +1,8 @@
 <h1>Home</h1>
 
 <?php
+  print("<script>history.replaceState({},'','/');</script>");
+
   if(!empty($data['mensagem'])):
     foreach($data['mensagem'] as $m):
       echo $m."<br>";
@@ -24,6 +26,5 @@
     <a href="/notes/excluir/<?php echo $note['id']; ?>">Excluir</a>
     <br>
   <?php endif; ?>
-
 
 <?php endforeach; ?>

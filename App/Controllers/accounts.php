@@ -1,5 +1,6 @@
 <?php
 
+use App\Auth;
 use App\Core\Controller;
 
 class Accounts extends Controller
@@ -23,6 +24,28 @@ class Accounts extends Controller
     endif;
     
     $this->view('accounts/cadastrar', $dados = ['mensagem' => $mensagem]);
+  }
+
+  public function login()
+  {
+    $mensagem = array();
+
+    if(isset($_POST['entrar'])):
+      if (empty($_POST['email']) || empty($_POST['senha'])):
+        $mensagem[] = "Os campos email e senha são obrigatórios!";
+      else:
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+        $mensagem[] = Auth::Login($email, $senha);
+      endif;
+    endif;
+
+    $this->view('accounts/login', $dados = ['mensagem' => $mensagem]);
+  }
+
+  public function logout()
+  {
+    Auth::Logout();
   }
 }
 
