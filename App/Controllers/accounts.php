@@ -5,6 +5,14 @@ use App\Core\Controller;
 
 class Accounts extends Controller
 {
+  public function index()
+  {
+    $note = $this->model('Note');
+    $dados = $note->getAll();
+
+    $this->view('home/index', $dados = ['registros' => $dados]);
+  }
+
   public function cadastrar()
   {
     $mensagem = array();

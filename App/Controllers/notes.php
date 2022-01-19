@@ -6,6 +6,14 @@ use \App\Core\Controller;
 
 class Notes extends Controller
 {
+  public function index()
+  {
+    $note = $this->model('Note');
+    $dados = $note->getAll();
+
+    $this->view('home/index', $dados = ['registros' => $dados]);
+  }
+
   public function ver($id = '')
   {
     $note = $this->model('Note');
