@@ -57,7 +57,10 @@ class App
    */
   public function parseURL()
   {
-    return explode('/', filter_var($_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL));
+    // Removing GET queries from route
+    $route = strtok($_SERVER['REQUEST_URI'], "?");
+    // Returning array with subroutes
+    return explode('/', filter_var($_SERVER['SERVER_NAME'].$route, FILTER_SANITIZE_URL));
   }
 }
 

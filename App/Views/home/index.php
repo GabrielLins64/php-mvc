@@ -12,19 +12,28 @@
 
 <hr>
 
-<?php foreach ($data['registros'] as $note): ?>
-  <h2>
-    <a href="/notes/ver/<?php echo $note['id']; ?>">
-      <?php echo $note['titulo']; ?>
-    </a>
-  </h2>
+<?php 
+  $pagination = new App\Pagination($data['registros'], $_GET['page'] ?? 1, 3);
 
-  <p> <?php echo $note['texto']; ?> </p>
+  if (empty($pagination->result())):
+    echo "<p>Nenhum registro encontrado!</p>";
+  else:
+    foreach ($pagination->result() as $note): ?>
+      <h2>
+        <a href="/notes/ver/<?php echo $note['id']; ?>">
+          <?php echo $note['titulo']; ?>
+        </a>
+      </h2>
 
-  <?php if(isset($_SESSION['logado'])): ?>
-    <a href="/notes/editar/<?php echo $note['id']; ?>">Editar</a>
-    <a href="/notes/excluir/<?php echo $note['id']; ?>">Excluir</a>
-    <br>
-  <?php endif; ?>
+      <p> <?php echo $note['texto']; ?> </p>
 
-<?php endforeach; ?>
+      <?php if(isset($_SESSION['logado'])): ?>
+        <a href="/notes/editar/<?php echo $note['id']; ?>">Editar</a>
+        <a href="/notes/excluir/<?php echo $note['id']; ?>">Excluir</a>
+        <br>
+      <?php endif;
+    endforeach;
+
+    $pagination->navigator();
+  endif;
+?>
