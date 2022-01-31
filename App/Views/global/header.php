@@ -1,6 +1,8 @@
 <!-- Header -->
 <div id="main-nav" class="main-header">
-  <div style="width: 70%; float: left;">
+  <div id="left-main-nav">
+    <img id="main-logo" src="<?php print URL_BASE; ?>/assets/png/logo1.png" alt="aqua logo" width="50">
+
     <a href="/">Home</a>
     <span> | </span>
 
@@ -20,7 +22,7 @@
 
   </div>
 
-  <div style="width: 30%; float: right; text-align: right;">
+  <div id="right-main-nav">
     <button id="dark_light_btn" class="dark-mode">🌛︎ Dark Mode</button>
     <a id="hamburguer-icon" href="javascript:void(0);" class="icon" onclick="toggleNav()"></a>
   </div>

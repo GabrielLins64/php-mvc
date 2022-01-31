@@ -2,7 +2,11 @@
   background-color: darkblue;
   border: 1px solid blue;
   padding: 10px 20px 10px 20px;
-  color: white
+  color: white;
+}
+
+.main-header a {
+  margin: 0 5px;
 }
 
 .main-header a:visited, .main-header a:link {
@@ -15,6 +19,27 @@
 
 .main-header a:active {
   color: lightblue;
+}
+
+#left-main-nav {
+  width: 70%;
+  float: left;
+  display: flex;
+  align-items: center;
+}
+
+#right-main-nav {
+  width: 30%;
+  float: right;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  height: 50px;
+}
+
+#main-logo {
+  margin-right: 20px;
 }
 
 button, input[type="button"]:hover {
@@ -55,6 +80,14 @@ button, input[type="button"]:hover {
 
   .main-header.responsive a.icon {
     float: right;
+    display: block;
+  }
+
+  #left-main-nav {
+    display: block;
+  }
+
+  #right-main-nav {
     display: block;
   }
 }
