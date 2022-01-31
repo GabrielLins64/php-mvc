@@ -131,7 +131,7 @@ Now edit the new file, by leaving this content in it:
 	ServerAdmin admin@phpmvc.com
 	DocumentRoot /var/www/phpmvc.com/public
 
-	<Directory "/var/www/phpmvc.com/">
+	<Directory "/var/www/phpmvc.com/public">
 		Options Indexes FollowSymLinks MultiViews
 		AllowOverride All
 		Require all granted
@@ -141,6 +141,8 @@ Now edit the new file, by leaving this content in it:
 	CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
+
+The configurations above tells the web server that the root document is the `public` directory. So, all external access will only be served with the contents within the `public` folder, even if it uses (in server-side) the external content.
 
 ### Activate the new Virtual Host files
 
@@ -165,7 +167,15 @@ And, finally, you should be able to navigate into www.phpmvc.com in your browser
 
 ## htaccess
 
-In order to apache 2 redirect all inner routes correctly to `public/index.php`, you'll have to create a `.htaccess` file on the `public/` directory. Its content must be:
+Since apache is only serving the content on the `public/` directory:
+
+```apache
+DocumentRoot /var/www/phpmvc.com/public
+```
+
+and the inner logic from the App Core's constructor called in `public/index.php` processes all routes and methods, we should redirect all URL routes to the main route.
+
+In order to apache 2 redirect all routes correctly to `public/index.php`, we'll have to create a `.htaccess` file on the `public/` directory and its content must be:
 
 ```apache
 RewriteEngine On
