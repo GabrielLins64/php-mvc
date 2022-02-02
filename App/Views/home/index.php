@@ -12,6 +12,19 @@
 
 <hr>
 
+<div class="search-container">
+  <form action="/home/search" method="post">
+    <input type="search" name="searchValue" placeholder="Busque alguma nota...">
+    <input type="submit" value="Buscar">
+    <?php
+      if (isset($_SESSION['searchValue']) and $_SESSION['searchValue'] != false) {
+        $_SESSION['searchValue'] = false;
+        print "<button onclick='location.reload(true);'>Voltar</button>";
+      }
+    ?>
+  </form>
+</div>
+
 <?php 
   $pagination = new App\Pagination($data['registros'], $_GET['page'] ?? 1, 3);
 

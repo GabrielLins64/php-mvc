@@ -36,6 +36,20 @@ class Note extends Model
     endif;
   }
 
+  public function search($searchValue)
+  {
+    $sql = "SELECT * FROM anotacoes WHERE titulo LIKE ?;";
+    $stmt = Model::getConn()->prepare($sql);
+    $stmt->execute(array("%$searchValue%"));
+
+    if ($stmt->rowCount() > 0):
+      $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+      return $result;
+    else:
+      return [];
+    endif;
+  }
+
   public function save()
   {
     $sql = "INSERT INTO anotacoes (titulo, texto) VALUES (?, ?);";
