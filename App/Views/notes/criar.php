@@ -19,3 +19,5 @@
   <input id="fileInput" type='file' name="noteImage" hidden>
   <button type="submit" name="cadastrar">Cadastrar</button>
 </form>
+
+<script src="/js/init.js"></script>
