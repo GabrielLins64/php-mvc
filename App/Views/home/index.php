@@ -48,7 +48,7 @@
     endforeach;
 
     ?>
-    <div>
+    <div class="generate-pdf-container">
       <input type="button" onClick="window.open('/pdf','_blank')" value="Gerar PDF">
     </div>
     <?php
