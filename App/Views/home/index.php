@@ -47,6 +47,12 @@
       <?php endif;
     endforeach;
 
+    ?>
+    <div>
+      <input type="button" onClick="window.open('/pdf','_blank')" value="Gerar PDF">
+    </div>
+    <?php
+
     $pagination->navigator();
   endif;
 ?>

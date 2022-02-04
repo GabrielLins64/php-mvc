@@ -8,5 +8,8 @@
     "platform": {
       "php": "7.4.25"
     }
+  },
+  "require": {
+    "dompdf/dompdf": "^1.1"
   }
 }
