@@ -351,6 +351,22 @@ In order to install a packagist package:
 $ composer require dompdf/dompdf
 ```
 
+*Another alternative to install a package or update its version is to edit `composer.json` and add your package/version at the "require" property:
+
+```json
+{
+  "require": {
+    "dompdf/dompdf": "^1.1"
+  }
+}
+```
+
+Then, simply run:
+
+```shell
+$ composer update
+```
+
 ---
 
 ## MySQL
