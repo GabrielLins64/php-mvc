@@ -14,12 +14,18 @@
 
 <div class="search-container">
   <form action="/home/search" method="post">
-    <input type="search" name="searchValue" placeholder="Busque alguma nota...">
+    <input type="search" name="searchValue" placeholder="Busque alguma nota..."
+    <?php 
+      if (isset($_SESSION['searchValue']) and $_SESSION['searchValue'] != false) {
+        print "value='".$_SESSION['searchValue']."'";
+      }
+    ?>
+    >
     <input type="submit" value="Buscar">
     <?php
       if (isset($_SESSION['searchValue']) and $_SESSION['searchValue'] != false) {
         $_SESSION['searchValue'] = false;
-        print "<button onclick='location.reload(true);'>Voltar</button>";
+        print "<button type='button' onclick='location.reload(true);'>Voltar</button>";
       }
     ?>
   </form>
