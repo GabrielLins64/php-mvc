@@ -26,6 +26,7 @@ Development of a template PHP project using the MVC (*Model-View-Controller*) ar
   - [Composer install](#composer-install)
   - [Composer dump-autoload](#composer-dump-autoload)
   - [Packagist](#packagist)
+    - [Installing a Packagist package example](#installing-a-packagist-package-example)
 - [MySQL](#mysql)
   - [Installation](#installation-2)
   - [Creating a new user](#creating-a-new-user)
@@ -337,6 +338,18 @@ Packagist.org is the main Composer repository. A Composer repository is basicall
 If you go to the Packagist.org website, you can browse and search for packages.
 
 Any open source project using Composer is recommended to publish their packages on Packagist. A library does not need to be on Packagist to be used by Composer, but it enables discovery and adoption by other developers more quickly.
+
+#### Installing a Packagist package example
+
+In order to install a packagist package:
+
+1. Go to https://packagist.org/
+2. Search for your package. For instance, dompdf
+3. Finally, install the package and its dependencies with:
+
+```shell
+$ composer require dompdf/dompdf
+```
 
 ---
 
