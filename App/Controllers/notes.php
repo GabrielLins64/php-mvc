@@ -32,13 +32,54 @@ class Notes extends Controller
       if (empty($_POST['titulo']) || empty($_POST['texto'])):
         $mensagem[] = "Todos os campos devem ser preenchidos.";
       else:
-        $note = $this->model('Note');
-        $note->title = $_POST['titulo'];
-        $note->text = $_POST['texto'];
-        $mensagem[] = $note->save();
+        $storage = new \Upload\Storage\FileSystem('./assets/uploads');
+        $file = new \Upload\File('noteImage', $storage);
+
+        // Optionally you can rename the file on upload
+        $new_filename = uniqid();
+        $file->setName($new_filename);
+
+        // Validate file upload
+        $file->addValidations(array(
+          // Ensure file is of type "image/png"
+          new \Upload\Validation\Mimetype('image/png'),
+
+          //You can also add multi mimetype validation
+          //new \Upload\Validation\Mimetype(array('image/png', 'image/gif'))
+
+          // Ensure file is no larger than 5M (use "B", "K", M", or "G")
+          new \Upload\Validation\Size('5M')
+        ));
+
+        // Access data about the file that has been uploaded
+        $data = array(
+          'name'       => $file->getNameWithExtension(),
+          'extension'  => $file->getExtension(),
+          'mime'       => $file->getMimetype(),
+          'size'       => $file->getSize(),
+          'md5'        => $file->getMd5(),
+          'dimensions' => $file->getDimensions()
+        );
+
+        // Try to upload file
+        try {
+          // Success!
+          $file->upload();
+          $mensagem[] = "Upload feito com sucesso!";
+
+          $note = $this->model('Note');
+          $note->title = $_POST['titulo'];
+          $note->text = $_POST['texto'];
+          $mensagem[] = $note->save();
+        }
+        catch (\Exception $e) {
+          // Fail!
+          $errors = $file->getErrors();
+          $mensagem[] = implode("<br>", $errors);
+        }
       endif;
     endif;
-    
+
     $this->view('notes/criar', $dados = ['mensagem' => $mensagem]);
   }
 
