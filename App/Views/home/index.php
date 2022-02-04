@@ -16,15 +16,14 @@
   <form action="/home/search" method="post">
     <input type="search" name="searchValue" placeholder="Busque alguma nota..."
     <?php 
-      if (isset($_SESSION['searchValue']) and $_SESSION['searchValue'] != false) {
-        print "value='".$_SESSION['searchValue']."'";
+      if (isset($_POST['searchValue'])) {
+        print "value='".$_POST['searchValue']."'";
       }
     ?>
     >
     <input type="submit" value="Buscar">
     <?php
-      if (isset($_SESSION['searchValue']) and $_SESSION['searchValue'] != false) {
-        $_SESSION['searchValue'] = false;
+      if (isset($_POST['searchValue'])) {
         print "<button type='button' onclick='location.reload(true);'>Voltar</button>";
       }
     ?>
