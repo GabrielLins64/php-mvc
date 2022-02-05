@@ -13,17 +13,17 @@
 <hr>
 
 <div class="search-container">
-  <form action="/home/search" method="post">
-    <input type="search" name="searchValue" placeholder="Busque alguma nota..."
+  <form action="/home/search" method="get">
+    <input type="search" name="search" placeholder="Busque alguma nota..."
     <?php 
-      if (isset($_POST['searchValue'])) {
-        print "value='".$_POST['searchValue']."'";
+      if (isset($_GET['search'])) {
+        print "value='".$_GET['search']."'";
       }
     ?>
     >
     <input type="submit" value="Buscar">
     <?php
-      if (isset($_POST['searchValue'])) {
+      if (isset($_GET['search'])) {
         print "<button type='button' onclick='location.reload(true);'>Voltar</button>";
       }
     ?>

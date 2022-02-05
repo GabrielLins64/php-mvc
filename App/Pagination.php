@@ -33,8 +33,16 @@ class Pagination
 
   public function navigator()
   {
-    $backward = $this->currentPage == 1 ? "#" : "?page=" . ($this->currentPage - 1);
-    $forward = $this->currentPage == $this->count ? "#" : "?page=" . ($this->currentPage + 1);
+    $url = isset($_GET['search'])
+          ? "/home/search?search=".$_GET['search']."&page="
+          : "?page=";
+
+    $backward = $this->currentPage == 1
+              ? "#"
+              : $url . ($this->currentPage - 1);
+    $forward = $this->currentPage == $this->count
+             ? "#"
+             : $url . ($this->currentPage + 1);
 
     print "<div class='pagination'>";
     print "<a href='$backward'>&laquo;</a>";
@@ -42,7 +50,7 @@ class Pagination
       if ($i == $this->currentPage)
         echo "<a href='#' class='active'>".$i."</a>";
       else
-        echo "<a href='?page=".$i."'>".$i."</a>";
+        echo "<a href='".$url.$i."'>".$i."</a>";
     }
     print "<a href='$forward'>&raquo;</a>";
     print "</div>";

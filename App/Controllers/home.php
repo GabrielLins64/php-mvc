@@ -14,8 +14,8 @@ class Home extends Controller
 
   public function search()
   {
-    $searchValue = $_POST['searchValue'] ?? $_SESSION['searchValue'];
-    $_SESSION['searchValue'] = $searchValue;
+    $searchValue = $_GET['search'] ?? $_SESSION['search'];
+    $_SESSION['search'] = $searchValue;
 
     $note = $this->model('Note');
     $data = $note->search($searchValue);
