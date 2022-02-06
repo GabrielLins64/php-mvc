@@ -49,6 +49,44 @@ a:hover {
   margin-top: 30px;
 }
 
+.note-container {
+  margin-top: 30px;
+  display: flex;
+  flex-flow: row;
+}
+
+.note-img {
+  width: 200px;
+  border-radius: 12px;
+}
+
+.note-content {
+  margin: 10px 20px;
+}
+
+.note-content h3 {
+  margin-top: 0;
+}
+
+@media screen and (max-width: 600px){
+  .note-container {
+    display: block;
+    text-align: center;
+  }
+
+  .note-content {
+    margin: 0 0;
+  }
+
+  .note-content h3 {
+    margin-top: 20px;
+  }
+
+  .note-content p {
+    text-align: justify;
+  }
+}
+
 #file-label {
   font-size: medium;
 }
