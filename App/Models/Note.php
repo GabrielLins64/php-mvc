@@ -68,11 +68,12 @@ class Note extends Model
 
   public function update($id)
   {
-    $sql = "UPDATE anotacoes SET titulo = ?, texto = ? WHERE id = ?";
+    $sql = "UPDATE anotacoes SET titulo = ?, texto = ?, imagem = ? WHERE id = ?";
     $stmt = Model::getConn()->prepare($sql);
     $stmt->bindValue(1, $this->title);
     $stmt->bindValue(2, $this->text);
-    $stmt->bindValue(3, $id);
+    $stmt->bindValue(3, $this->image ?? null);
+    $stmt->bindValue(4, $id);
 
     if ($stmt->execute()):
       return "Atualizado com sucesso!";

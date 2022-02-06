@@ -67,10 +67,36 @@ class Notes extends Controller
       if (empty($_POST['titulo']) || empty($_POST['texto'])):
         $mensagem[] = "Todos os campos devem ser preenchidos.";
       else:
+        if ($_FILES['noteImage']['size'] != 0) {
+          try {
+            if ($_POST['oldImageName'])
+              unlink("assets/uploads/".$_POST['oldImageName']);
+            $imageName = $this->uploadImage();
+            $note->image = $imageName;
+          }
+          catch (\Exception $e) {
+            $mensagem[] = implode("<br>", $this->uploadErrors);
+            $this->view('notes/criar', $dados = ['mensagem' => $mensagem]);
+            return;
+          }
+        }
+        else if($_POST['oldImageName']) {
+          $note->image = $_POST['oldImageName'];
+        }
+
         $note->title = $_POST['titulo'];
         $note->text = $_POST['texto'];
         $mensagem[] = $note->update($id);
       endif;
+
+    elseif (isset($_POST['removerImagem'])):
+      $note->image = null;
+      if ($_POST['oldImageName'])
+        unlink("assets/uploads/".$_POST['oldImageName']);
+
+      $note->title = $_POST['titulo'];
+      $note->text = $_POST['texto'];
+      $mensagem[] = $note->update($id);
     endif;
 
     $dados = $note->find($id);
