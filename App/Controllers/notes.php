@@ -34,17 +34,19 @@ class Notes extends Controller
       if (empty($_POST['titulo']) || empty($_POST['texto'])):
         $mensagem[] = "Todos os campos devem ser preenchidos.";
       else:
+        $note = $this->model('Note');
+
         if ($_FILES['noteImage']['size'] != 0) {
           try {
-            $this->uploadImage();
-          } catch (\Exception $e) {
+            $imageName = $this->uploadImage();
+            $note->image = $imageName;
+          }
+          catch (\Exception $e) {
             $mensagem[] = implode("<br>", $this->uploadErrors);
             $this->view('notes/criar', $dados = ['mensagem' => $mensagem]);
             return;
           }
         }
-
-        $note = $this->model('Note');
         $note->title = $_POST['titulo'];
         $note->text = $_POST['texto'];
         $mensagem[] = $note->save();
@@ -81,6 +83,10 @@ class Notes extends Controller
 
     $mensagem = array();
     $note = $this->model('Note');
+
+    $dbNote = $note->find($id);
+    if ($dbNote['imagem'])
+      unlink("assets/uploads/".$dbNote['imagem']);
 
     $mensagem[] = $note->delete($id);
     $dados = $note->getAll();
@@ -121,6 +127,7 @@ class Notes extends Controller
       );
 
       $file->upload();
+      return $data['name'];
     }
     catch (\Exception $e) {
       $this->uploadErrors = $file->getErrors();

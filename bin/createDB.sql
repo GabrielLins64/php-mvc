@@ -7,6 +7,7 @@ CREATE TABLE anotacoes
   id INT NOT NULL AUTO_INCREMENT,
   titulo VARCHAR(200),
   texto TEXT,
+  imagem VARCHAR(100),
   PRIMARY KEY (id)
 );
 

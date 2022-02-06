@@ -6,6 +6,7 @@ class Note extends Model
 {
   public $title;
   public $text;
+  public $image;
 
   public function getAll()
   {
@@ -52,10 +53,11 @@ class Note extends Model
 
   public function save()
   {
-    $sql = "INSERT INTO anotacoes (titulo, texto) VALUES (?, ?);";
+    $sql = "INSERT INTO anotacoes (titulo, texto, imagem) VALUES (?, ?, ?);";
     $stmt = Model::getConn()->prepare($sql);
     $stmt->bindValue(1, $this->title);
     $stmt->bindValue(2, $this->text);
+    $stmt->bindValue(3, $this->image ?? null);
 
     if ($stmt->execute()):
       return "Cadastrado com sucesso!";

@@ -43,12 +43,17 @@
         </a>
       </h2>
 
+      <?php
+        if ($note['imagem'])
+          print "<img src='assets/uploads/".$note['imagem']."' alt='Note Image' width='200'>";
+      ?>
+
       <p> <?php echo $note['texto']; ?> </p>
 
       <?php if(isset($_SESSION['logado'])): ?>
         <a href="/notes/editar/<?php echo $note['id']; ?>">Editar</a>
         <a href="/notes/excluir/<?php echo $note['id'] . "?page=" . $pagination->currentPage; ?>">Excluir</a>
-        <br>
+        <hr>
       <?php endif;
     endforeach;
 
