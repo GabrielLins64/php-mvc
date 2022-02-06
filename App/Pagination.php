@@ -22,6 +22,9 @@ class Pagination
     $this->pageRecords = array_chunk($this->data, $this->shownRecordsAmount);
     $this->count = count($this->pageRecords);
 
+    if ($this->count <= $this->currentPage - 1)
+      $this->currentPage--; // In case of excluding all page records
+
     if ($this->count > 0) {
       $this->result = $this->pageRecords[$this->currentPage - 1];
       return $this->result;

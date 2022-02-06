@@ -47,7 +47,7 @@
 
       <?php if(isset($_SESSION['logado'])): ?>
         <a href="/notes/editar/<?php echo $note['id']; ?>">Editar</a>
-        <a href="/notes/excluir/<?php echo $note['id']; ?>">Excluir</a>
+        <a href="/notes/excluir/<?php echo $note['id'] . "?page=" . $pagination->currentPage; ?>">Excluir</a>
         <br>
       <?php endif;
     endforeach;
