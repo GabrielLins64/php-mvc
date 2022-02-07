@@ -61,6 +61,10 @@
   color: greenyellow;
 }
 
+.dark-mode .note-img {
+  border: 1px solid greenyellow;
+}
+
 .dark-mode #hamburguer-icon {
   background-image: url("/assets/png/dark-hamburguer.png");
 }

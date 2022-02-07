@@ -56,12 +56,27 @@ a:hover {
 }
 
 .note-img {
-  width: 200px;
+  width: 150px;
+  min-width: 150px;
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+  border: 1px solid blue;
   border-radius: 12px;
+  margin-right: 20px;
+}
+
+.note-header, .note-footer {
+  width: 150px;
+  text-align: center;
+}
+
+.note-footer {
+  margin-top: 20px;
 }
 
 .note-content {
-  margin: 10px 20px;
+  margin: 10px 0px;
 }
 
 .note-content h3 {
@@ -74,7 +89,16 @@ a:hover {
     text-align: center;
   }
 
-  .note-content {
+  .note-header, .note-footer {
+    width: 100%;
+    text-align: center;
+  }
+
+  .note-img {
+    margin: auto;
+  }
+
+  .note-content, .note-footer {
     margin: 0 0;
   }
 
@@ -84,6 +108,7 @@ a:hover {
 
   .note-content p {
     text-align: justify;
+    margin-bottom: 0;
   }
 }
 

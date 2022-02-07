@@ -37,27 +37,35 @@
     echo "<p>Nenhum registro encontrado!</p>";
   else:
     foreach ($pagination->result() as $note): ?>
-      <h2>
-        <a href="/notes/ver/<?php echo $note['id']; ?>">
-          <?php echo $note['titulo']; ?>
-        </a>
-      </h2>
+      <div class="note-header">
+        <h3>
+          <a href="/notes/ver/<?php echo $note['id']; ?>">
+            <?php echo $note['titulo']; ?>
+          </a>
+        </h3>
+      </div>
 
-      <?php
-        if ($note['imagem'])
-          print "<img src='assets/uploads/".$note['imagem']."' alt='Note Image' width='200'>";
-      ?>
+      <div class="note-container">
+        <?php
+          if ($note['imagem'])
+            print "<img src='assets/uploads/".$note['imagem']."' alt='Note Image' class='note-img'>";
+          else
+            print "<div class='note-img'>Sem imagem</div>";
+        ?>
+        <div class="note-content">
+          <p><?php echo $note['texto']; ?></p><br>
+        </div>
+      </div>
 
-      <p> <?php echo $note['texto']; ?> </p>
+      <div class="note-footer">
+        <?php if(isset($_SESSION['logado'])): ?>
+          <a href="/notes/editar/<?php echo $note['id']; ?>">Editar</a>
+          <a href="/notes/excluir/<?php echo $note['id'] . "?page=" . $pagination->currentPage; ?>">Excluir</a>
+        <?php endif;?>
+      </div>
+      <hr>
 
-      <?php if(isset($_SESSION['logado'])): ?>
-        <a href="/notes/editar/<?php echo $note['id']; ?>">Editar</a>
-        <a href="/notes/excluir/<?php echo $note['id'] . "?page=" . $pagination->currentPage; ?>">Excluir</a>
-        <hr>
-      <?php endif;
-    endforeach;
-
-    ?>
+    <?php endforeach; ?>
     <div class="generate-pdf-container">
       <input type="button" onClick="window.open('/pdf','_blank')" value="Gerar PDF">
     </div>
