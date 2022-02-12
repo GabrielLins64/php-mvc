@@ -29,6 +29,26 @@ class Auth
     endif;
   }
 
+  public static function LoginApi($email, $senha)
+  {
+    $sql = "SELECT * FROM contas WHERE email = ?";
+    $stmt = Model::getConn()->prepare($sql);
+    $stmt->bindValue(1, $email);
+    $stmt->execute();
+
+    if($stmt->rowCount() >= 1):
+      $res = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+      if(password_verify($senha, $res['senha'])):
+        return true;
+      else:
+        return false;
+      endif;
+    else:
+      return false;
+    endif;
+  }
+
   public static function Logout()
   {
     session_destroy();
