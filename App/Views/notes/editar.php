@@ -17,7 +17,6 @@
   <button type="button" onclick="document.getElementById('fileInput').click()">Imagem</button>
   <label for="fileInput" id="file-label"><?php print $data['registro']['imagem'] ?? "Insira uma imagem"; ?></label><br>
   <input id="fileInput" type='file' name="noteImage" hidden>
-  <input type="text" name="oldImageName" value="<?php print $data['registro']['imagem']; ?>" hidden>
   <button name="removerImagem" value="true">Remover imagem</button><br>
   <button type="submit" name="atualizar">Atualizar</button>
 </form>

@@ -62,6 +62,7 @@ class Notes extends Controller
 
     $mensagem = array();
     $note = $this->model('Note');
+    $noteObj = $note->find($id);
 
     if (isset($_POST['atualizar'])):
       if (empty($_POST['titulo']) || empty($_POST['texto'])):
@@ -69,8 +70,8 @@ class Notes extends Controller
       else:
         if ($_FILES['noteImage']['size'] != 0) {
           try {
-            if ($_POST['oldImageName'])
-              unlink("assets/uploads/".$_POST['oldImageName']);
+            if ($noteObj['imagem'])
+              unlink("assets/uploads/".$noteObj['imagem']);
             $imageName = $this->uploadImage();
             $note->image = $imageName;
           }
@@ -80,8 +81,8 @@ class Notes extends Controller
             return;
           }
         }
-        else if($_POST['oldImageName']) {
-          $note->image = $_POST['oldImageName'];
+        else if($noteObj['imagem']) {
+          $note->image = $noteObj['imagem'];
         }
 
         $note->title = $_POST['titulo'];
@@ -90,9 +91,11 @@ class Notes extends Controller
       endif;
 
     elseif (isset($_POST['removerImagem'])):
+      $noteObj = $note->find($id);
+
       $note->image = null;
-      if ($_POST['oldImageName'])
-        unlink("assets/uploads/".$_POST['oldImageName']);
+      if ($noteObj['imagem'])
+        unlink("assets/uploads/".$noteObj['imagem']);
 
       $note->title = $_POST['titulo'];
       $note->text = $_POST['texto'];
