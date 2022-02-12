@@ -16,7 +16,7 @@
   <textarea placeholder="Texto" name="texto"><?php print $data['registro']['texto'] ?></textarea><br>
   <button type="button" onclick="document.getElementById('fileInput').click()">Imagem</button>
   <label for="fileInput" id="file-label"><?php print $data['registro']['imagem'] ?? "Insira uma imagem"; ?></label><br>
-  <input id="fileInput" accept="image/png" type='file' name="noteImage" hidden>
+  <input id="fileInput" accept="image/png, image/jpeg" type='file' name="noteImage" hidden>
   <button name="removerImagem" value="true">Remover imagem</button><br>
   <button type="submit" name="atualizar">Atualizar</button>
 </form>

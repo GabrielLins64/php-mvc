@@ -77,7 +77,7 @@ class Notes extends Controller
           }
           catch (\Exception $e) {
             $mensagem[] = implode("<br>", $this->uploadErrors);
-            $this->view('notes/criar', $dados = ['mensagem' => $mensagem]);
+            $this->view('notes/editar', $dados = ['mensagem' => $mensagem, 'registro' => $noteObj]);
             return;
           }
         }
@@ -135,7 +135,7 @@ class Notes extends Controller
     // Validate file upload
     $file->addValidations(array(
       // Ensure file is of type "image/png"
-      new \Upload\Validation\Mimetype('image/png'),
+      new \Upload\Validation\Mimetype(array('image/png', 'image/jpeg', 'image/jpg')),
 
       //You can also add multi mimetype validation
       //new \Upload\Validation\Mimetype(array('image/png', 'image/gif'))
