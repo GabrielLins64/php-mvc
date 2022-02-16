@@ -26,7 +26,8 @@ class App
     // If the url doesn't specify a controller, just keep controller at home.
     // Otherwise, send to "Not Found" page
     elseif ($url[1] != ''):
-      $this->controller = 'notfound';
+      $this->controller = 'errorRoutes';
+      $this->method = 'notfound';
       unset($url[1]);
     endif;
 

@@ -14,8 +14,13 @@
     <?php else: ?>
       <a href="/notes/criar">Criar bloco</a>
       <span> | </span>
-
+      
       <a href="/accounts/logout">Logout</a>
+      
+      <?php if ($_SESSION['userLevel'] >= 1): ?>
+        <span> | </span>
+        <a href="/admin">Admin</a>
+      <?php endif; ?>
     <?php endif; ?>
 
     <a id="dark_light_lnk">🌛︎ Dark Mode</a>

@@ -20,6 +20,7 @@ class Auth
         $_SESSION['logado'] = true;
         $_SESSION['userId'] = $res['id'];
         $_SESSION['userName'] = $res['nome'];
+        $_SESSION['userLevel'] = $res['nivel'];
         header('Location: /');
       else:
         return "Senha inválida!";
@@ -59,6 +60,14 @@ class Auth
   {
     if (!isset($_SESSION['logado'])):
       header('Location: /');
+      die;
+    endif;
+  }
+
+  public static function CheckLevel($requiredLevel)
+  {
+    if (($_SESSION['userLevel'] ?? 0) < $requiredLevel):
+    header('Location: /errorRoutes/unauthorized');
       die;
     endif;
   }
