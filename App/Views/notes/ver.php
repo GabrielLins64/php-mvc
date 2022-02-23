@@ -6,7 +6,7 @@
 <div class="note-container">
   <?php
     if ($data['imagem']) {
-      print "<img src='".URL_BASE."/assets/uploads/".$data['imagem']."' alt='Note Image' class='note-img'>";
+      print "<img src='/assets/uploads/".$data['imagem']."' alt='Note Image' class='note-img'>";
     }
   ?>
   <div class="note-content">

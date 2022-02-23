@@ -1,7 +1,7 @@
 <!-- Header -->
 <div id="main-nav" class="main-header">
   <div id="left-main-nav">
-    <img id="main-logo" src="<?php print URL_BASE; ?>/assets/png/logo1.png" alt="aqua logo" width="50">
+    <img id="main-logo" src="/assets/png/logo1.png" alt="aqua logo" width="50">
 
     <a href="/">Home</a>
     <span> | </span>
